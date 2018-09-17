@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calc</title>
+</head>
+<body>
+    <style>
+        .calc{
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+            widows: 400px;
+            align-content: stretch;
+            align-items: stretch
+        }
+        .top-inputs{
+            display: flex;
+        }
+        .calc input{
+            flex: 1;
+        }
+        button{
+            width: 100%;
+            height: 100px;
+            background-color: greenyellow;
+            border: none;
+            cursor: pointer;
+
+        }
+    </style>
+    <div class="calc">
+        <div class="top-inputs">
+            <input type="number" name="" id="left-input">
+            <select name="" id="sign">
+                <option value="+" selected>+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+                <option value="%">%</option>
+            </select>
+            <input type="number" name="" id="right-input">
+        </div>
+        <button id="calc_btn">Try Me</button>
+    </div>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            var sign = $("#sign");
+            var leftInput = $("#left-input");
+            var rightInput = $("#right-input");
+            var calc = function(){
+                if (leftInput.val() >= 0 && rightInput.val() >= 0)
+                {
+                    op = sign.val();
+                    if ((op == "/" || op == "%") && rightInput.val() == 0)
+                    {
+                        console.log("It’s over 9000!");
+                        alert("It’s over 9000!");
+                    }else{
+                        if (leftInput.val() != "" && rightInput.val() != "")
+                        {
+                            switch(op){
+                                case "+":
+                                    var res = parseInt(leftInput.val()) + parseInt(rightInput.val());
+                                    console.log(res);
+                                    alert(res);
+                                break;
+                                case "-":
+                                    var res = parseInt(leftInput.val()) - parseInt(rightInput.val());
+                                    console.log(res);
+                                    alert(res);
+                                break;
+                                case "*":
+                                    var res = parseInt(leftInput.val()) * parseInt(rightInput.val());
+                                    console.log(res);
+                                    alert(res);
+                                break;
+                                case "/":
+                                    var res = parseInt(leftInput.val()) / parseInt(rightInput.val());
+                                    console.log(res);
+                                    alert(res);
+                                break;
+                                case "%":
+                                    var res = parseInt(leftInput.val()) % parseInt(rightInput.val());
+                                    console.log(res);
+                                    alert(res);
+                                break;
+                            }
+                        }
+                    }
+
+                }else{
+                    alert("Error :(");
+                }
+            }
+            $("#calc_btn").click(calc);
+            setInterval(function(){
+                alert("Please, use me...");
+            }, 30000);
+        });
+    </script>
+</body>
+</html>
